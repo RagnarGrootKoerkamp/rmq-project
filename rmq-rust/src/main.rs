@@ -72,7 +72,7 @@ fn read_input(file: &Path) -> Input {
 
 /// Bench the given RMQ implementation on the given input, and print the results in CSV format.
 fn bench<'a, RMQ: Rmq<'a>>(input: &'a Input) {
-    eprint!("{:>10}\t{:>20}\t", input.data.len(), RMQ::name());
+    eprint!("{:>10}\t{:>30}\t", input.data.len(), RMQ::name());
     if input.data.len() > RMQ::max_n() {
         eprintln!("skipped");
         return;
@@ -87,7 +87,7 @@ fn bench<'a, RMQ: Rmq<'a>>(input: &'a Input) {
     }
     let elapsed = start.elapsed().as_nanos() as f64 / input.queries.len() as f64;
     println!(
-        "{},{},{},{},{},{}",
+        "{},{},\"{}\",{},{},{}",
         input.data.len(),
         input.queries.len(),
         RMQ::name(),
